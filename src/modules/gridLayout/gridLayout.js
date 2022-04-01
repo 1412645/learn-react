@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { DatabaseTestService } from '../../services/databaseTest';
 
 const GridLayout = () => {
+  const getDemoFromDatabase = () => {
+    DatabaseTestService.init().then(async () => {
+      console.log('created DB demo in indexedDB');
+      const demoData = await DatabaseTestService.getAll();
+      console.log('demoData: ', demoData);
+    });
+  };
+
+  const handleAddData = async () => {
+    const dataDemos = await DatabaseTestService.add('Le Hoang Vu');
+    console.log('dataDemos: ', dataDemos);
+  };
+
+  const handleDeleteData = async () => {
+    const deleteResult = await DatabaseTestService.deleteById(1);
+    console.log('dataDemos after delete: ', deleteResult);
+  };
+
+  const handleClearData = () => {
+    DatabaseTestService.clearAll();
+  };
+
+  useEffect(() => {
+    getDemoFromDatabase();
+  }, []);
+
   return (
     <ContainerLayout>
+      <button onClick={handleAddData}>Add Data</button>
+      <button onClick={handleDeleteData}>Delete data</button>
+      <button onClick={handleClearData}>Clear all data</button>
       <h1>GridLayout</h1>
       <h2>Example 1</h2>
       <WrapperContainer1>

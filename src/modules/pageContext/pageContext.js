@@ -3,6 +3,7 @@ import Parent from '../../components/parent';
 import MyContext from '../../contexts/demoContext';
 import DemoHook from './demoHook';
 import { initalState, reducer } from './contextReducer';
+import DemoComponent from '../../components/demoComponent';
 
 // const PageContext = () => {
 //   const [data, setData] = useState({ count: 0 });
@@ -38,6 +39,7 @@ import { initalState, reducer } from './contextReducer';
 const PageContext = () => {
   const [state, dispatch] = useReducer(reducer, initalState);
   const valueContext = { state, dispatch };
+  console.log('PageContext');
   // const [data, setData] = useState({ count: 0 });
   // const [number, setNumber] = useState(10);
   // const handleUpdate = () => {
@@ -60,6 +62,7 @@ const PageContext = () => {
         <h1>Page Context</h1>
         <div>Count number: {state.count}</div>
         <Parent />
+        <DemoComponent />
       </MyContext.Provider>
     </>
   );

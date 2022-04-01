@@ -7,6 +7,7 @@ const IndexedDB = () => {
   const getTodosFromDatabase = () => {
     DatabaseService.init().then(async () => {
       const todos = await DatabaseService.getAll();
+      console.log('all todos: ', todos);
       setToDo(todos);
     });
   };

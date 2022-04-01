@@ -13,15 +13,17 @@ const PageRedux = () => {
   const count = useSelector((state) => state.PageReduxReducer.count);
   const dispatch = useDispatch();
 
+  console.log('PageRedux');
+
   const handleAdd = () => {
     // dispatch(addCount({ count: count + 1 }));
     dispatch({ type: 'ADD_ASYNC', count: count + 1 });
-    setInputValue((pre) => pre + 1);
+    // setInputValue((pre) => pre + 1);
   };
 
   const handleSub = () => {
     dispatch(subCount({ count: count - 1 }));
-    setInputValue((pre) => pre - 1);
+    // setInputValue((pre) => pre - 1);
   };
 
   var first_function = function () {

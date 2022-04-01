@@ -13,7 +13,8 @@ class DatabaseProvider {
 
       this.request.onupgradeneeded = () => {
         this.db = this.request.result;
-        console.log('createTodosStore');
+        console.log('request: ', this.request);
+        console.log('createTodosStore: ', this.request.result);
         this.createTodosStore();
       };
 
@@ -33,6 +34,7 @@ class DatabaseProvider {
       this.stores.TODOS,
       storeConfig
     );
+    console.log('objectStore: ', objectStore);
     objectStore.createIndex('name', 'name');
     objectStore.createIndex('completed', 'completed');
   };

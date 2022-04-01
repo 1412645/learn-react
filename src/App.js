@@ -15,8 +15,12 @@ const ReduxPage = lazy(() => import('./modules/pageRedux/pageRedux'));
 const InterviewPage = lazy(() => import('./modules/interview/interview'));
 const GridLayout = lazy(() => import('./modules/gridLayout/gridLayout'));
 const IndexedDB = lazy(() => import('./modules/indexedDB/indexedDB'));
+const PageReduxWrapper = lazy(() =>
+  import('./modules/pageRedux/pageReduxWrapper')
+);
 
 function App() {
+  console.log('App');
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -58,7 +62,7 @@ function App() {
                   <ContextPage />
                 </Route>
                 <Route path='/redux-page'>
-                  <ReduxPage />
+                  <PageReduxWrapper />
                 </Route>
                 <Route path='/interview-page'>
                   <InterviewPage />
