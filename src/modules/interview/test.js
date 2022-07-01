@@ -9,69 +9,33 @@ const Interview = () => {
   const elmInputSecs = useRef(null);
   let timerId;
 
-  const reset = () => setTime([parseInt(minutes), parseInt(seconds)]);
+  const reset = () => {
+    setTime([minutes, seconds]);
+  };
 
   const tick = () => {
     if (mins === 0 && secs === 0) return;
-    else if (mins === 0 && secs === 0) {
-      setTime([59, 59]);
-      return;
-    } else if (secs === 0) {
+    else if (secs === 0) {
       setTime([mins - 1, 59]);
     } else {
       setTime([mins, secs - 1]);
-    }
-    // else if (mins === 0 && secs === 0) {
-    //   setTime([59, 59]);
-    // }
-    // else if (secs === 0) {
-    //   setTime([mins - 1, 59]);
-    // } else {
-    //   setTime([mins, secs - 1]);
-    // }
-  };
-
-  const handlePause = () => {
-    if (!isPause) {
-      clearInterval(timerId);
-      setIsPause(true);
-    } else {
-      setIsPause(false);
     }
   };
 
   const handleStart = () => {
     const minute = elmInputMin.current.value;
     const seconds = elmInputSecs.current.value;
-    setTime([parseInt(minute), parseInt(seconds)]);
-    timerId = setInterval(() => {
-      // if (mins == 0 && secs == 0) {
-      //   clearInterval(timerId);
-      //   return;
-      // }
-      tick();
-    }, 1000);
-  };
-
-  const handleReset = () => {
-    clearInterval(timerId);
-    reset();
-    elmInputMin.current.value = "";
-    elmInputSecs.current.value = "";
+    setTime([minute, seconds]);
+    timerId = setInterval(() => tick(), 1000);
   };
 
   useEffect(() => {
-    console.log("aaaa");
     if (!isPause) {
-      timerId = setInterval(() => {
-        // if (mins == 0 && secs == 0) {
-        //   clearInterval(timerId);
-        //   return;
-        // }
-        tick();
-      }, 1000);
+      timerId = setInterval(() => tick(), 1000);
     }
-    return () => clearInterval(timerId);
+    return () => {
+      clearInterval(timerId);
+    };
   });
 
   return (

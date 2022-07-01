@@ -1,9 +1,9 @@
-import React, { useState, useMemo, useCallback, useReducer } from 'react';
-import Parent from '../../components/parent';
-import MyContext from '../../contexts/demoContext';
-import DemoHook from './demoHook';
-import { initalState, reducer } from './contextReducer';
-import DemoComponent from '../../components/demoComponent';
+import React, { useState, useMemo, useCallback, useReducer, FC } from "react";
+import Parent from "../../components/parent";
+import MyContext from "../../contexts/demoContext";
+import DemoHook from "./demoHook";
+import { initalState, reducer } from "./contextReducer";
+import DemoComponent from "../../components/demoComponent";
 
 // const PageContext = () => {
 //   const [data, setData] = useState({ count: 0 });
@@ -39,7 +39,7 @@ import DemoComponent from '../../components/demoComponent';
 const PageContext = () => {
   const [state, dispatch] = useReducer(reducer, initalState);
   const valueContext = { state, dispatch };
-  console.log('PageContext');
+  console.log("PageContext");
   // const [data, setData] = useState({ count: 0 });
   // const [number, setNumber] = useState(10);
   // const handleUpdate = () => {

@@ -27,8 +27,9 @@ const responseHandler = (response) => {
   return response;
 };
 
-const errorHandler = (error) => {
-  console.log(error);
+const errorHandler = (error, type) => {
+  console.log("type: ", type);
+  console.log("error: ", error);
   // return Promise.reject(error.response);
   // window.location = "/login";
   return error.response;
@@ -36,12 +37,12 @@ const errorHandler = (error) => {
 
 customAxios.interceptors.request.use(
   (request) => requestHandler(request),
-  (error) => errorHandler(error)
+  (error) => errorHandler(error, "request")
 );
 
 customAxios.interceptors.response.use(
   (response) => responseHandler(response),
-  (error) => errorHandler(error)
+  (error) => errorHandler(error, "response")
 );
 
 export default customAxios;
